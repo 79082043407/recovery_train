@@ -6,27 +6,28 @@
   <title>Цифровой план АВР</title>
   <style>
     :root {
-      --bg: #070a10;
-      --bg-soft: #0d121b;
-      --panel: rgba(18, 24, 37, 0.9);
-      --panel-strong: rgba(23, 30, 45, 0.96);
-      --panel-soft: rgba(255, 255, 255, 0.04);
-      --line: rgba(152, 171, 211, 0.14);
-      --line-strong: rgba(152, 171, 211, 0.24);
-      --text: #f4f7ff;
-      --muted: #95a2bc;
-      --blue: #2b9cff;
-      --blue-2: #0f65d8;
-      --green: #45d46f;
+      --bg: #071019;
+      --bg-2: #0d1622;
+      --panel: rgba(20, 28, 41, 0.84);
+      --panel-strong: rgba(24, 33, 48, 0.94);
+      --panel-soft: rgba(255, 255, 255, 0.05);
+      --line: rgba(162, 184, 226, 0.14);
+      --line-strong: rgba(162, 184, 226, 0.24);
+      --text: #f5f8ff;
+      --muted: #94a2bd;
+      --blue: #2f9fff;
+      --blue-2: #0c63d8;
+      --green: #4bd971;
       --amber: #ffbf47;
-      --orange: #ff8f3f;
-      --red: #ff5f68;
-      --slate: #7d879b;
-      --radius: 26px;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
-      --axis-label-width: 166px;
-      --minute-width: 3.3px;
+      --orange: #ff9344;
+      --red: #ff626c;
+      --slate: #8390a6;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      --radius: 28px;
+      --minute-width: 7px;
       --timeline-total: 210;
+      --axis-label-width: 220px;
+      --desktop-shell: min(100vw - 32px, 1520px);
     }
 
     * {
@@ -38,9 +39,9 @@
       margin: 0;
       min-height: 100%;
       background:
-        radial-gradient(circle at top left, rgba(33, 78, 148, 0.34), transparent 28%),
-        radial-gradient(circle at 85% 12%, rgba(255, 143, 63, 0.18), transparent 18%),
-        linear-gradient(180deg, #03050a 0%, #0a0d14 44%, #06080e 100%);
+        radial-gradient(circle at top left, rgba(49, 103, 180, 0.34), transparent 25%),
+        radial-gradient(circle at 84% 12%, rgba(255, 151, 74, 0.14), transparent 20%),
+        linear-gradient(180deg, #03060c 0%, #081018 42%, #060b12 100%);
       color: var(--text);
       font-family: "Segoe UI Variable Display", "Trebuchet MS", sans-serif;
     }
@@ -48,49 +49,53 @@
     body {
       display: flex;
       justify-content: center;
-      padding: 12px;
+      padding: 16px;
     }
 
     .app-shell {
-      width: min(100%, 470px);
-      height: min(940px, calc(100dvh - 24px));
-      min-height: 720px;
+      width: var(--desktop-shell);
+      min-height: calc(100dvh - 32px);
       position: relative;
       overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 10%),
+        radial-gradient(circle at top center, rgba(90, 150, 255, 0.14), transparent 20%),
+        linear-gradient(180deg, rgba(6, 10, 17, 0.98), rgba(8, 13, 21, 0.99));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
-      background:
-        radial-gradient(circle at top center, rgba(255, 255, 255, 0.05), transparent 22%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 12%),
-        linear-gradient(180deg, rgba(4, 7, 14, 0.97), rgba(8, 10, 17, 0.99));
-      border-radius: 34px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
     }
 
     .app-shell::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 11%),
-        radial-gradient(circle at 50% -5%, rgba(102, 168, 255, 0.18), transparent 26%);
       pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 10%),
+        radial-gradient(circle at 0% 100%, rgba(53, 114, 221, 0.12), transparent 26%);
       z-index: 0;
+    }
+
+    .safe-top,
+    .content,
+    .bottom-nav {
+      position: relative;
+      z-index: 1;
     }
 
     .safe-top {
       padding-top: calc(8px + env(safe-area-inset-top));
-      position: relative;
-      z-index: 1;
     }
 
     .status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 18px 4px;
+      padding: 10px 22px 4px;
       color: var(--muted);
       font-size: 0.84rem;
       letter-spacing: 0.03em;
@@ -98,27 +103,27 @@
 
     .topbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 10px 18px 14px;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 22px 14px;
       border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 100%);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       min-width: 0;
     }
 
     .brand-mark {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: linear-gradient(180deg, #ff7c70, #ad1f28);
-      box-shadow: 0 0 0 5px rgba(255, 95, 104, 0.14);
+      background: linear-gradient(180deg, #ff7d74, #bb2831);
+      box-shadow: 0 0 0 6px rgba(255, 98, 108, 0.14);
       flex: 0 0 auto;
     }
 
@@ -128,7 +133,7 @@
 
     .brand-copy strong {
       display: block;
-      font-size: 1rem;
+      font-size: 1.04rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -138,7 +143,7 @@
       display: block;
       margin-top: 2px;
       color: var(--muted);
-      font-size: 0.75rem;
+      font-size: 0.76rem;
     }
 
     .icon-row {
@@ -148,15 +153,23 @@
       flex: 0 0 auto;
     }
 
+    .icon-btn,
+    .mini-icon-btn,
+    .zoom-btn,
+    .segment-btn {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+    }
+
     .icon-btn {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 14px;
       display: grid;
       place-items: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      color: #d8e2f7;
       font-size: 1rem;
     }
 
@@ -165,9 +178,7 @@
       justify-content: space-between;
       gap: 12px;
       align-items: center;
-      padding: 12px 16px 0;
-      position: relative;
-      z-index: 1;
+      padding: 12px 18px 0;
     }
 
     .subheader-row {
@@ -189,35 +200,32 @@
       border-radius: 999px;
       font-size: 0.76rem;
       white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: var(--text);
     }
 
     .chip.alert {
-      background: rgba(255, 95, 104, 0.12);
-      border-color: rgba(255, 95, 104, 0.18);
-      color: #ffd7d9;
+      background: rgba(255, 98, 108, 0.12);
+      color: #ffd7da;
+      border-color: rgba(255, 98, 108, 0.18);
     }
 
     .chip.ok {
-      background: rgba(69, 212, 111, 0.12);
-      border-color: rgba(69, 212, 111, 0.2);
-      color: #cdf9d7;
+      background: rgba(75, 217, 113, 0.12);
+      color: #d4ffdf;
+      border-color: rgba(75, 217, 113, 0.18);
     }
 
     .content {
       flex: 1;
       overflow: auto;
-      padding: 16px 16px calc(124px + env(safe-area-inset-bottom));
-      position: relative;
-      z-index: 1;
+      padding: 18px 18px calc(116px + env(safe-area-inset-bottom));
       scroll-behavior: smooth;
     }
 
     .screen {
       display: none;
-      animation: fade-slide 220ms ease;
+      animation: fade-slide 240ms ease;
     }
 
     .screen.active {
@@ -227,7 +235,7 @@
     @keyframes fade-slide {
       from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(8px);
       }
       to {
         opacity: 1;
@@ -237,13 +245,14 @@
 
     .stack {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
-    .hero-grid,
-    .hq-grid {
+    .situation-layout,
+    .plan-layout,
+    .hq-layout {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .panel {
@@ -252,30 +261,31 @@
       border-radius: var(--radius);
       padding: 14px;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 30%),
         var(--panel);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
     }
 
     .panel::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 26%),
-        radial-gradient(circle at top right, rgba(53, 121, 255, 0.08), transparent 20%);
       pointer-events: none;
+      background:
+        radial-gradient(circle at top right, rgba(60, 140, 255, 0.08), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 22%);
     }
 
     .panel-header {
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
       margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
     }
 
     .panel-title {
@@ -291,6 +301,22 @@
       line-height: 1.45;
     }
 
+    .panel-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mini-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+    }
+
     .weather-box {
       display: flex;
       align-items: center;
@@ -299,14 +325,14 @@
 
     .weather-box strong {
       display: block;
-      font-size: 1.06rem;
+      font-size: 1.08rem;
     }
 
     .weather-box span {
       display: block;
-      color: var(--muted);
-      font-size: 0.76rem;
       margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.75rem;
     }
 
     .map-card {
@@ -323,15 +349,47 @@
       z-index: 1;
     }
 
+    .map-toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 0 14px 12px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    .segment-group {
+      display: inline-flex;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .segment-btn {
+      padding: 8px 12px;
+      border-radius: 0;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .segment-btn.active {
+      background: linear-gradient(180deg, rgba(47, 159, 255, 0.25), rgba(47, 159, 255, 0.08));
+      color: var(--text);
+    }
+
     .map-viewport {
       position: relative;
-      margin: 12px;
-      min-height: 338px;
-      border-radius: 26px;
+      min-height: 480px;
+      margin: 0 12px 12px;
+      border-radius: 30px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
       background:
-        linear-gradient(180deg, #2a425a 0%, #182230 23%, #0f141c 24%, #090d13 100%);
+        radial-gradient(circle at 20% 14%, rgba(95, 156, 255, 0.12), transparent 25%),
+        linear-gradient(180deg, #24324b 0%, #1f2d42 30%, #1b2940 100%);
     }
 
     .map-svg {
@@ -344,34 +402,82 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%),
-        linear-gradient(180deg, transparent 55%, rgba(4, 8, 12, 0.65) 100%);
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.02), transparent 22%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 18%),
+        linear-gradient(180deg, transparent 58%, rgba(4, 7, 13, 0.44) 100%);
       pointer-events: none;
     }
 
-    .map-floating {
+    .map-chip-stack {
       position: absolute;
-      right: 12px;
-      bottom: 12px;
-      width: min(46%, 176px);
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(9, 13, 21, 0.88);
+      left: 18px;
+      top: 16px;
+      display: grid;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .floating-panel {
+      position: absolute;
+      background: rgba(9, 14, 22, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      z-index: 1;
+      border-radius: 20px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+      z-index: 2;
     }
 
-    .map-floating strong {
-      display: block;
-      font-size: 0.88rem;
+    .map-overview {
+      right: 18px;
+      top: 18px;
+      width: 260px;
+      padding: 14px;
     }
 
-    .map-floating span {
+    .map-overview strong,
+    .map-status-card strong {
       display: block;
-      color: var(--muted);
-      font-size: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .map-overview span,
+    .map-status-card span {
+      display: block;
       margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.45;
+    }
+
+    .tiny-metrics {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .tiny-metric {
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .tiny-metric span {
+      margin: 0;
+      font-size: 0.7rem;
+    }
+
+    .tiny-metric strong {
+      margin-top: 6px;
+      font-size: 0.92rem;
+    }
+
+    .map-status-card {
+      left: 18px;
+      bottom: 18px;
+      width: 320px;
+      padding: 14px;
     }
 
     .mini-progress {
@@ -384,73 +490,73 @@
 
     .mini-progress div {
       height: 100%;
-      width: 74%;
-      background: linear-gradient(90deg, var(--amber), var(--orange));
+      background: linear-gradient(90deg, #ffbf47, #ff9344);
+      width: 68%;
     }
 
     .map-legend,
-    .summary-grid,
-    .kpis,
-    .insight-grid {
+    .stats-grid,
+    .insight-grid,
+    .kpis {
       display: grid;
       gap: 10px;
     }
 
     .map-legend {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       padding: 0 12px 12px;
     }
 
     .legend-item,
-    .summary-card,
-    .kpi,
+    .stat-card,
     .insight-card,
-    .task-preview-card,
-    .person-card,
+    .kpi,
+    .preview-task,
     .status-card,
+    .person-card,
     .chat-item {
+      border-radius: 18px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 18px;
     }
 
     .legend-item {
       display: flex;
       gap: 10px;
       align-items: center;
-      padding: 11px 12px;
-      font-size: 0.84rem;
+      padding: 12px;
+      font-size: 0.83rem;
     }
 
     .legend-dot {
       width: 12px;
       height: 12px;
-      flex: 0 0 auto;
       border-radius: 50%;
+      flex: 0 0 auto;
     }
 
-    .summary-grid,
-    .kpis,
-    .insight-grid {
+    .stats-grid,
+    .insight-grid,
+    .kpis {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .summary-card,
-    .kpi,
-    .insight-card {
+    .stat-card,
+    .insight-card,
+    .kpi {
       padding: 12px;
     }
 
-    .summary-card span,
-    .kpi span,
-    .insight-card span {
+    .stat-card span,
+    .insight-card span,
+    .kpi span {
       color: var(--muted);
       font-size: 0.76rem;
     }
 
-    .summary-card strong,
-    .kpi strong,
-    .insight-card strong {
+    .stat-card strong,
+    .insight-card strong,
+    .kpi strong {
       display: block;
       margin-top: 8px;
       font-size: 1.05rem;
@@ -466,59 +572,53 @@
       font: inherit;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 160ms ease, filter 160ms ease;
     }
 
     .primary-btn {
-      background: linear-gradient(180deg, #349fff, #0e63d8);
-      box-shadow: 0 16px 26px rgba(18, 95, 220, 0.28);
+      background: linear-gradient(180deg, #329fff, #0d62d8);
+      box-shadow: 0 16px 30px rgba(23, 97, 220, 0.24);
     }
 
     .secondary-btn {
-      background: linear-gradient(180deg, rgba(255, 191, 71, 0.28), rgba(255, 143, 63, 0.18));
+      background: linear-gradient(180deg, rgba(255, 191, 71, 0.26), rgba(255, 147, 68, 0.16));
       border: 1px solid rgba(255, 191, 71, 0.18);
     }
 
-    .primary-btn:active,
-    .secondary-btn:active {
-      transform: translateY(1px) scale(0.996);
-    }
-
-    .tasks-preview {
+    .preview-list {
       display: grid;
       gap: 10px;
     }
 
-    .task-preview-card {
+    .preview-task {
       padding: 12px;
     }
 
-    .task-preview-head {
+    .preview-task-head {
       display: flex;
       justify-content: space-between;
       gap: 10px;
       align-items: flex-start;
     }
 
-    .task-preview-head strong {
+    .preview-task-head strong {
       display: block;
       font-size: 0.9rem;
     }
 
-    .task-preview-head span {
+    .preview-task-head span {
       display: block;
       margin-top: 4px;
       color: var(--muted);
       font-size: 0.76rem;
+      line-height: 1.35;
     }
 
     .progress-track {
       margin-top: 10px;
-      width: 100%;
       height: 8px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
       overflow: hidden;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .progress-fill {
@@ -527,9 +627,9 @@
     }
 
     .gantt-shell {
-      padding: 8px;
-      border-radius: 22px;
-      background: rgba(5, 8, 15, 0.58);
+      padding: 10px;
+      border-radius: 24px;
+      background: rgba(6, 10, 17, 0.58);
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
@@ -538,25 +638,45 @@
       justify-content: space-between;
       gap: 12px;
       align-items: center;
-      margin-bottom: 12px;
-      padding: 0 4px;
+      flex-wrap: wrap;
+      padding: 4px 4px 12px;
+    }
+
+    .toolbar-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .zoom-btn {
+      height: 34px;
+      min-width: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 0 12px;
+    }
+
+    .zoom-label {
       color: var(--muted);
-      font-size: 0.76rem;
+      font-size: 0.78rem;
+      padding: 0 4px;
     }
 
     .gantt-wrap {
       overflow: auto;
-      border-radius: 18px;
+      border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
-        rgba(8, 11, 18, 0.92);
+        rgba(8, 12, 19, 0.94);
+      max-height: 620px;
       scrollbar-width: thin;
     }
 
     .gantt {
-      min-width: calc(var(--axis-label-width) + var(--minute-width) * var(--timeline-total) + 40px);
-      overflow: hidden;
+      min-width: calc(var(--axis-label-width) + var(--minute-width) * var(--timeline-total) + 80px);
     }
 
     .gantt-header,
@@ -568,8 +688,8 @@
     .gantt-header {
       position: sticky;
       top: 0;
-      z-index: 2;
-      background: rgba(10, 14, 23, 0.95);
+      z-index: 4;
+      background: rgba(11, 15, 24, 0.96);
       border-bottom: 1px solid var(--line-strong);
     }
 
@@ -580,16 +700,18 @@
       flex-direction: column;
       justify-content: center;
       gap: 4px;
+      background: rgba(9, 14, 22, 0.75);
     }
 
     .gantt-label strong {
-      font-size: 0.87rem;
+      font-size: 0.9rem;
+      line-height: 1.25;
     }
 
     .gantt-label span {
       color: var(--muted);
-      font-size: 0.75rem;
-      line-height: 1.35;
+      font-size: 0.76rem;
+      line-height: 1.4;
     }
 
     .timeline,
@@ -597,28 +719,29 @@
       position: relative;
       width: calc(var(--minute-width) * var(--timeline-total));
       background-image:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
         linear-gradient(180deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
       background-size:
         calc(var(--minute-width) * 10) 100%,
-        100% 24px;
+        100% 28px;
     }
 
     .timeline {
-      min-height: 56px;
+      min-height: 60px;
     }
 
     .timeline-row {
-      min-height: 84px;
+      min-height: 100px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .time-tick {
       position: absolute;
-      top: 16px;
+      top: 18px;
       transform: translateX(-50%);
       color: var(--muted);
-      font-size: 0.74rem;
+      font-size: 0.76rem;
+      letter-spacing: 0.02em;
     }
 
     .current-line {
@@ -626,35 +749,40 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, rgba(255, 123, 76, 0.96), rgba(255, 123, 76, 0.3));
-      box-shadow: 0 0 0 1px rgba(255, 123, 76, 0.12);
+      background: linear-gradient(180deg, rgba(255, 147, 68, 1), rgba(255, 147, 68, 0.28));
       z-index: 1;
     }
 
     .current-line::before {
       content: "";
       position: absolute;
-      top: 12px;
       left: 50%;
+      top: 14px;
       width: 10px;
       height: 10px;
-      border-radius: 50%;
       transform: translate(-50%, -50%);
-      background: #ff8f3f;
-      box-shadow: 0 0 0 6px rgba(255, 143, 63, 0.14);
+      border-radius: 50%;
+      background: #ff9344;
+      box-shadow: 0 0 0 6px rgba(255, 147, 68, 0.14);
     }
 
     .task-bar {
       position: absolute;
-      top: 14px;
-      min-height: 54px;
-      border-radius: 16px;
+      top: 12px;
+      min-height: 74px;
+      border-radius: 18px;
       border: 1px solid rgba(255, 255, 255, 0.16);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 10px 22px rgba(0, 0, 0, 0.18);
-      padding: 9px 12px 12px;
+        0 14px 24px rgba(0, 0, 0, 0.18);
+      padding: 12px 14px 14px;
       overflow: hidden;
+      transition: transform 180ms ease, filter 180ms ease;
+    }
+
+    .task-bar:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
     }
 
     .task-bar::after {
@@ -662,56 +790,53 @@
       position: absolute;
       inset: auto 0 0;
       height: 4px;
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .task-bar-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .task-bar strong {
-      display: block;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .task-bar span {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.73rem;
-      color: rgba(255, 255, 255, 0.78);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      background: rgba(255, 255, 255, 0.16);
     }
 
     .task-progress {
       position: absolute;
       inset: auto 0 0;
       height: 4px;
-      background: rgba(255, 255, 255, 0.94);
-      z-index: 1;
+      background: rgba(255, 255, 255, 0.92);
     }
 
     .task-delay-badge {
       position: absolute;
       top: 8px;
       right: 8px;
-      padding: 4px 7px;
+      padding: 4px 8px;
       border-radius: 999px;
-      background: rgba(255, 95, 104, 0.18);
-      border: 1px solid rgba(255, 95, 104, 0.18);
-      color: #ffd3d6;
+      background: rgba(255, 98, 108, 0.16);
+      border: 1px solid rgba(255, 98, 108, 0.18);
+      color: #ffd8dc;
       font-size: 0.68rem;
       z-index: 1;
+    }
+
+    .task-bar-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .task-bar-title {
+      font-size: 0.94rem;
+      line-height: 1.22;
+      font-weight: 700;
+      white-space: normal;
+      word-break: break-word;
+      max-width: calc(100% - 56px);
+    }
+
+    .task-bar-meta,
+    .task-bar-window {
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.82);
+      white-space: normal;
+      word-break: break-word;
     }
 
     .delay-banner {
@@ -721,9 +846,9 @@
       align-items: center;
       padding: 14px;
       border-radius: 20px;
-      background: rgba(255, 95, 104, 0.12);
-      border: 1px solid rgba(255, 95, 104, 0.16);
-      color: #ffd8db;
+      background: rgba(255, 98, 108, 0.12);
+      border: 1px solid rgba(255, 98, 108, 0.16);
+      color: #ffd8dc;
     }
 
     .delay-banner strong {
@@ -731,7 +856,7 @@
     }
 
     .people-list,
-    .task-status-list,
+    .status-list,
     .chat-list {
       display: grid;
       gap: 10px;
@@ -763,31 +888,20 @@
     }
 
     .avatar {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 14px;
       display: grid;
       place-items: center;
       flex: 0 0 auto;
       font-weight: 800;
-      color: #111620;
+      color: #121722;
     }
 
-    .avatar.blue {
-      background: linear-gradient(180deg, #a6daff, #2f87ed);
-    }
-
-    .avatar.green {
-      background: linear-gradient(180deg, #baf7c8, #3bb961);
-    }
-
-    .avatar.yellow {
-      background: linear-gradient(180deg, #ffe58f, #c89813);
-    }
-
-    .avatar.slate {
-      background: linear-gradient(180deg, #e8eef8, #9eaaca);
-    }
+    .avatar.blue { background: linear-gradient(180deg, #b5e1ff, #2f8aec); }
+    .avatar.green { background: linear-gradient(180deg, #c4f8d0, #3ab960); }
+    .avatar.yellow { background: linear-gradient(180deg, #ffeaa1, #ca9813); }
+    .avatar.slate { background: linear-gradient(180deg, #edf2fd, #9ba9c6); }
 
     .meta-copy,
     .chat-body {
@@ -798,7 +912,7 @@
     .status-top strong,
     .chat-body strong {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
     .meta-copy span,
@@ -808,7 +922,7 @@
       margin-top: 4px;
       color: var(--muted);
       font-size: 0.77rem;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .status-pill {
@@ -823,18 +937,18 @@
     }
 
     .status-ok {
-      background: rgba(69, 212, 111, 0.12);
-      color: #cef8d7;
+      background: rgba(75, 217, 113, 0.12);
+      color: #d5ffe0;
     }
 
     .status-warn {
       background: rgba(255, 191, 71, 0.12);
-      color: #ffe3a3;
+      color: #ffe5a9;
     }
 
     .status-bad {
-      background: rgba(255, 95, 104, 0.12);
-      color: #ffd2d6;
+      background: rgba(255, 98, 108, 0.12);
+      color: #ffd9dc;
     }
 
     .chat-item {
@@ -842,15 +956,15 @@
       gap: 8px;
     }
 
-    .chat-text {
-      color: #dce6fb;
-      font-size: 0.88rem;
-      line-height: 1.45;
+    .chat-item.outgoing {
+      background: linear-gradient(180deg, rgba(47, 159, 255, 0.16), rgba(47, 159, 255, 0.08));
+      border-color: rgba(47, 159, 255, 0.18);
     }
 
-    .chat-item.outgoing {
-      background: linear-gradient(180deg, rgba(43, 156, 255, 0.16), rgba(43, 156, 255, 0.08));
-      border-color: rgba(43, 156, 255, 0.18);
+    .chat-text {
+      color: #dee7fb;
+      font-size: 0.88rem;
+      line-height: 1.5;
     }
 
     .chat-form {
@@ -861,8 +975,8 @@
     }
 
     .chat-input {
-      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.04);
       color: var(--text);
       padding: 13px 14px;
@@ -873,29 +987,28 @@
     .send-btn {
       border: 0;
       border-radius: 16px;
-      background: linear-gradient(180deg, #329fff, #0f63d8);
+      background: linear-gradient(180deg, #329fff, #0d62d8);
       color: white;
       font: inherit;
       font-weight: 700;
-      padding: 0 18px;
+      padding: 0 20px;
       cursor: pointer;
     }
 
     .bottom-nav {
       position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: calc(12px + env(safe-area-inset-bottom));
+      left: 14px;
+      right: 14px;
+      bottom: calc(14px + env(safe-area-inset-bottom));
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       padding: 10px;
-      border-radius: 24px;
-      background: rgba(8, 12, 19, 0.92);
+      background: rgba(7, 11, 18, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
       box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(20px);
-      z-index: 3;
+      backdrop-filter: blur(18px);
     }
 
     .nav-btn {
@@ -913,8 +1026,8 @@
 
     .nav-btn.active {
       color: var(--text);
-      background: linear-gradient(180deg, rgba(43, 156, 255, 0.22), rgba(43, 156, 255, 0.08));
-      box-shadow: inset 0 0 0 1px rgba(43, 156, 255, 0.2);
+      background: linear-gradient(180deg, rgba(47, 159, 255, 0.22), rgba(47, 159, 255, 0.08));
+      box-shadow: inset 0 0 0 1px rgba(47, 159, 255, 0.18);
     }
 
     .nav-icon {
@@ -933,33 +1046,86 @@
       line-height: 1.45;
     }
 
-    @media (min-width: 940px) {
-      .hero-grid {
-        grid-template-columns: 1.18fr 0.82fr;
+    @media (min-width: 1080px) {
+      .situation-layout {
+        grid-template-columns: 1.28fr 0.72fr;
+        align-items: start;
       }
 
-      .hq-grid {
-        grid-template-columns: 0.94fr 1.06fr;
+      .situation-map-column {
+        min-width: 0;
+      }
+
+      .situation-side-column {
+        min-width: 0;
+        display: grid;
+        gap: 16px;
+      }
+
+      .plan-layout {
+        grid-template-columns: 340px 1fr;
+        align-items: start;
+      }
+
+      .hq-layout {
+        grid-template-columns: 360px 1fr 360px;
+        align-items: start;
       }
     }
 
-    @media (max-width: 620px) {
+    @media (max-width: 1079px) {
+      .map-legend {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
       body {
         padding: 0;
       }
 
       .app-shell {
         width: 100%;
-        height: 100dvh;
         min-height: 100dvh;
         border-radius: 0;
         border: 0;
       }
 
-      .map-legend,
-      .summary-grid,
+      .content {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .map-viewport {
+        min-height: 420px;
+      }
+
+      .map-overview,
+      .map-status-card {
+        width: auto;
+        max-width: calc(100% - 36px);
+      }
+
+      .map-overview {
+        right: 14px;
+        top: 14px;
+      }
+
+      .map-status-card {
+        left: 14px;
+        bottom: 14px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      :root {
+        --axis-label-width: 170px;
+      }
+
+      .stats-grid,
+      .insight-grid,
       .kpis,
-      .insight-grid {
+      .map-legend {
         grid-template-columns: 1fr;
       }
 
@@ -971,9 +1137,43 @@
         min-height: 48px;
       }
 
+      .map-viewport {
+        min-height: 360px;
+      }
+
+      .map-overview {
+        width: 220px;
+      }
+
+      .tiny-metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
       :root {
-        --axis-label-width: 148px;
-        --minute-width: 3.1px;
+        --minute-width: 6px;
+        --axis-label-width: 154px;
+      }
+
+      .status-bar,
+      .topbar,
+      .subheader {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .task-bar {
+        min-height: 80px;
+      }
+
+      .task-bar-title {
+        font-size: 0.88rem;
+      }
+
+      .task-bar-meta,
+      .task-bar-window {
+        font-size: 0.74rem;
       }
     }
   </style>
@@ -983,7 +1183,7 @@
     <div class="safe-top">
       <div class="status-bar">
         <span>09:41</span>
-        <span>КрасЖД • офлайн-режим</span>
+        <span>КрасЖД • desktop/mobile adaptive</span>
       </div>
 
       <header class="topbar">
@@ -991,248 +1191,403 @@
           <span class="brand-mark"></span>
           <div class="brand-copy">
             <strong>Цифровой план АВР</strong>
-            <span>Сетевой график и штаб ликвидации</span>
+            <span>Оперативный штаб, схема происшествия, сетевой график и Гант</span>
           </div>
         </div>
+
         <div class="icon-row">
-          <div class="icon-btn">🔔</div>
-          <div class="icon-btn">✕</div>
+          <button class="icon-btn" type="button" title="Уведомления">🔔</button>
+          <button class="icon-btn" type="button" title="Параметры">⚙️</button>
         </div>
       </header>
 
       <div class="subheader">
         <div class="subheader-row">
           <div class="chip alert">Сход 2 вагонов на перегоне</div>
-          <div class="chip">Распоряжение 2417р • 2182/р</div>
-          <div class="chip ok">Источник: ТЗ КрасЖД 2022</div>
+          <div class="chip">КрасЖД • 2417р • 2182/р</div>
+          <div class="chip ok">Основано на ТЗ цифрового плана</div>
         </div>
       </div>
     </div>
 
     <main class="content">
       <section class="screen active" id="screen-situation">
-        <div class="stack">
-          <div class="panel map-card">
-            <div class="map-head">
-              <div class="weather-box">
-                <div style="font-size:1.5rem;">⛅</div>
-                <div>
-                  <strong>12°C</strong>
-                  <span>Ясно, ветер 2 м/с, видимость хорошая</span>
+        <div class="situation-layout">
+          <div class="situation-map-column stack">
+            <div class="panel map-card">
+              <div class="map-head">
+                <div class="weather-box">
+                  <div style="font-size:1.5rem;">⛅</div>
+                  <div>
+                    <strong>12°C</strong>
+                    <span>Ясно, слабый ветер, видимость хорошая</span>
+                  </div>
                 </div>
+                <div class="chip alert">Закрыты 2 пути</div>
               </div>
-              <div class="chip alert">Заблокировано 2 пути</div>
-            </div>
 
-            <div class="map-viewport">
-              <svg class="map-svg" viewBox="0 0 420 336" xmlns="http://www.w3.org/2000/svg" aria-label="Схема участка">
-                <defs>
-                  <linearGradient id="skyLite" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#446b8e" />
-                    <stop offset="100%" stop-color="#233444" />
-                  </linearGradient>
-                  <linearGradient id="yardGround" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#324757" />
-                    <stop offset="100%" stop-color="#1b2630" />
-                  </linearGradient>
-                  <linearGradient id="trackLine" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#9bb1c7" stop-opacity="0.86" />
-                    <stop offset="100%" stop-color="#586779" stop-opacity="0.44" />
-                  </linearGradient>
-                  <linearGradient id="accidentGlow" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#ff9d66" />
-                    <stop offset="100%" stop-color="#ff4f47" />
-                  </linearGradient>
-                </defs>
-                <rect width="420" height="336" fill="url(#yardGround)" />
-                <rect x="0" y="0" width="420" height="96" fill="url(#skyLite)" opacity="0.46" />
-                <g opacity="0.22">
-                  <circle cx="38" cy="44" r="14" fill="#9ddb87" />
-                  <circle cx="62" cy="56" r="11" fill="#9ddb87" />
-                  <circle cx="86" cy="40" r="16" fill="#9ddb87" />
-                  <circle cx="118" cy="64" r="18" fill="#9ddb87" />
-                  <circle cx="338" cy="44" r="17" fill="#9ddb87" />
-                  <circle cx="364" cy="58" r="14" fill="#9ddb87" />
-                </g>
-                <rect x="302" y="52" width="86" height="54" rx="9" fill="#ae6f33" opacity="0.78" />
-                <rect x="310" y="60" width="68" height="38" rx="7" fill="#e7a14b" opacity="0.46" />
-                <g stroke="url(#trackLine)" stroke-width="5" stroke-linecap="round">
-                  <path d="M-16 116 C116 130, 230 145, 438 130" />
-                  <path d="M-16 148 C120 160, 236 172, 438 162" />
-                  <path d="M-20 188 C112 178, 226 196, 440 206" />
-                  <path d="M-18 226 C112 212, 228 236, 440 254" />
-                  <path d="M78 90 C118 140, 156 164, 236 190" />
-                  <path d="M98 86 C140 128, 174 150, 258 176" />
-                </g>
-                <g opacity="0.9">
-                  <rect x="24" y="188" width="68" height="28" rx="7" fill="#d04c3a" />
-                  <rect x="30" y="194" width="24" height="12" rx="3" fill="#edf4ff" opacity="0.42" />
-                  <rect x="258" y="184" width="68" height="22" rx="6" fill="#4f5c69" />
-                  <rect x="320" y="188" width="50" height="19" rx="5" fill="#5b6979" />
-                  <rect x="186" y="125" width="60" height="19" rx="5" fill="#983925" transform="rotate(18 186 125)" />
-                  <rect x="232" y="136" width="60" height="18" rx="5" fill="#535b65" transform="rotate(-24 232 136)" />
-                  <rect x="118" y="124" width="40" height="16" rx="4" fill="#bb622c" />
-                </g>
-                <g>
-                  <circle cx="222" cy="152" r="30" fill="#ff675f" opacity="0.12" />
-                  <circle cx="222" cy="152" r="20" fill="#ff675f" opacity="0.2" />
-                  <path d="M222 128 L238 160 H206 Z" fill="url(#accidentGlow)" />
-                  <rect x="217.5" y="139" width="9" height="13" rx="4" fill="#fff3ef" />
-                </g>
-                <g>
-                  <rect x="22" y="146" width="64" height="20" rx="6" fill="#ebba2d" />
-                  <rect x="28" y="150" width="16" height="10" rx="3" fill="#292f37" />
-                  <rect x="76" y="142" width="18" height="10" rx="3" fill="#ebba2d" />
-                  <line x1="94" y1="147" x2="118" y2="124" stroke="#ebba2d" stroke-width="4" />
-                  <circle cx="38" cy="168" r="7" fill="#161a21" />
-                  <circle cx="74" cy="168" r="7" fill="#161a21" />
+              <div class="map-toolbar">
+                <div class="segment-group">
+                  <button class="segment-btn active" type="button" data-layer="incident">Схема аварии</button>
+                  <button class="segment-btn" type="button" data-layer="resources">Силы и средства</button>
+                </div>
+                <button class="mini-icon-btn" type="button" id="pulseToggle" title="Подсветить критическую зону">✨</button>
+                <button class="mini-icon-btn" type="button" id="simulateBtn" title="Прокрутить сценарий">▶</button>
+              </div>
 
-                  <rect x="102" y="232" width="66" height="20" rx="6" fill="#ebba2d" />
-                  <rect x="108" y="236" width="16" height="10" rx="3" fill="#292f37" />
-                  <rect x="154" y="228" width="18" height="10" rx="3" fill="#ebba2d" />
-                  <line x1="172" y1="234" x2="194" y2="200" stroke="#ebba2d" stroke-width="4" />
-                  <circle cx="118" cy="254" r="7" fill="#161a21" />
-                  <circle cx="154" cy="254" r="7" fill="#161a21" />
-                </g>
-                <g font-family="Segoe UI, sans-serif" font-size="12" fill="#ffffff" opacity="0.88">
-                  <text x="302" y="118">База ДАВС</text>
-                  <text x="24" y="178">Пожарный поезд</text>
-                  <text x="24" y="136">ЕДК-1000</text>
-                  <text x="100" y="222">Бульдозер</text>
-                  <text x="198" y="104">Место схода ПС</text>
-                  <text x="254" y="220">Вагон №1</text>
-                  <text x="316" y="224">Вагон №2</text>
-                </g>
-              </svg>
-              <div class="map-floating">
-                <strong>Оперативный сценарий</strong>
-                <span>Схема происшествия и перечень сил/средств формируются по подходу из порядка сетевого графика КрасЖД.</span>
-                <div class="mini-progress"><div></div></div>
-              </div>
-              <div class="map-overlay"></div>
-            </div>
+              <div class="map-viewport">
+                <div class="map-chip-stack">
+                  <div class="chip">НВП • на месте</div>
+                  <div class="chip">Пожарный поезд • прикрытие</div>
+                </div>
 
-            <div class="map-legend">
-              <div class="legend-item">
-                <span class="legend-dot" style="background:#ff5f68;"></span>
-                Место транспортного происшествия
+                <div class="floating-panel map-overview">
+                  <strong>Оперативная сводка</strong>
+                  <span id="mapSummary">Схема похожа на референс: вид сверху, горизонтальные пути, зона схода ПС, база ДАВС и техника в одном поле.</span>
+                  <div class="tiny-metrics">
+                    <div class="tiny-metric">
+                      <span>Силы</span>
+                      <strong id="forcesValue">8</strong>
+                    </div>
+                    <div class="tiny-metric">
+                      <span>Техника</span>
+                      <strong id="equipmentValue">5</strong>
+                    </div>
+                    <div class="tiny-metric">
+                      <span>ETA</span>
+                      <strong id="etaTop">2 ч 34 мин</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="floating-panel map-status-card">
+                  <strong>Критический участок</strong>
+                  <span id="criticalSummary">Подъём сошедшего подвижного состава определяет критический путь. После него стартуют ПЧ, ШЧ, ЭЧ и контрольный пропуск.</span>
+                  <div class="mini-progress"><div id="mapProgressFill"></div></div>
+                </div>
+
+                <svg class="map-svg" viewBox="0 0 1440 820" xmlns="http://www.w3.org/2000/svg" aria-label="Схема аварии">
+                  <defs>
+                    <linearGradient id="sceneSky" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#263651"/>
+                      <stop offset="100%" stop-color="#223149"/>
+                    </linearGradient>
+                    <linearGradient id="groundGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#334867"/>
+                      <stop offset="100%" stop-color="#273854"/>
+                    </linearGradient>
+                    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%">
+                      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.28"/>
+                    </filter>
+                    <filter id="glowRed" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="14" result="blur"/>
+                      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 0.4 0 0 0  0 0 0 0 0  0 0 0 0.5 0"/>
+                    </filter>
+                    <filter id="glowAmber" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="10" result="blur"/>
+                      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 0.7 0 0 0  0 0 0 0 0  0 0 0 0.5 0"/>
+                    </filter>
+                  </defs>
+
+                  <rect width="1440" height="820" fill="url(#sceneSky)"/>
+                  <g opacity="0.14">
+                    <circle cx="90" cy="82" r="34" fill="#98d08c"/>
+                    <circle cx="140" cy="130" r="54" fill="#92d38a"/>
+                    <circle cx="260" cy="165" r="42" fill="#94d38b"/>
+                    <circle cx="1190" cy="88" r="48" fill="#9fd38f"/>
+                    <circle cx="1268" cy="142" r="58" fill="#90c884"/>
+                    <circle cx="1310" cy="746" r="48" fill="#8dcf84"/>
+                    <circle cx="1396" cy="690" r="54" fill="#92d089"/>
+                  </g>
+
+                  <rect x="0" y="250" width="1440" height="280" fill="url(#groundGrad)"/>
+                  <rect x="0" y="530" width="1440" height="290" fill="#24354f"/>
+
+                  <g opacity="0.92">
+                    <rect x="0" y="302" width="1440" height="10" fill="#d9e5fb"/>
+                    <rect x="0" y="350" width="1440" height="10" fill="#d9e5fb"/>
+                    <rect x="0" y="442" width="1440" height="10" fill="#d9e5fb"/>
+                    <rect x="0" y="488" width="1440" height="10" fill="#d9e5fb"/>
+                  </g>
+
+                  <g opacity="0.22">
+                    <rect x="0" y="312" width="1440" height="38" fill="#7084aa"/>
+                    <rect x="0" y="452" width="1440" height="36" fill="#7084aa"/>
+                  </g>
+
+                  <g id="trainLeft" filter="url(#softShadow)">
+                    <rect x="196" y="374" width="140" height="30" rx="4" fill="#243a5e" stroke="#101a29" stroke-width="2"/>
+                    <rect x="336" y="372" width="178" height="34" rx="16" fill="#26416a" stroke="#101a29" stroke-width="2"/>
+                    <rect x="214" y="380" width="88" height="18" fill="#5f79a7" opacity="0.72"/>
+                    <rect x="398" y="381" width="64" height="16" rx="8" fill="#425a88"/>
+                    <g fill="#ffbe45">
+                      <rect x="306" y="380" width="8" height="5"/>
+                      <rect x="304" y="388" width="8" height="5"/>
+                      <rect x="458" y="383" width="7" height="4"/>
+                    </g>
+                  </g>
+
+                  <g id="trainRight" filter="url(#softShadow)">
+                    <rect x="962" y="374" width="140" height="30" rx="4" fill="#243a5e" stroke="#101a29" stroke-width="2"/>
+                    <rect x="1102" y="372" width="178" height="34" rx="16" fill="#26416a" stroke="#101a29" stroke-width="2"/>
+                    <rect x="980" y="380" width="88" height="18" fill="#5f79a7" opacity="0.72"/>
+                    <rect x="1164" y="381" width="64" height="16" rx="8" fill="#425a88"/>
+                    <g fill="#ffbe45">
+                      <rect x="1080" y="380" width="8" height="5"/>
+                      <rect x="1224" y="383" width="7" height="4"/>
+                    </g>
+                  </g>
+
+                  <g id="containers" filter="url(#softShadow)">
+                    <g transform="translate(260 500) rotate(-10)">
+                      <rect width="116" height="44" fill="#325a4c" stroke="#13251e" stroke-width="2"/>
+                      <g stroke="#11221b" stroke-width="2">
+                        <line x1="18" y1="0" x2="18" y2="44"/>
+                        <line x1="36" y1="0" x2="36" y2="44"/>
+                        <line x1="54" y1="0" x2="54" y2="44"/>
+                        <line x1="72" y1="0" x2="72" y2="44"/>
+                        <line x1="90" y1="0" x2="90" y2="44"/>
+                      </g>
+                      <text x="58" y="30" text-anchor="middle" font-size="18" fill="#ff6b54" font-weight="700">КСО</text>
+                    </g>
+                    <g transform="translate(384 520) rotate(16)">
+                      <rect width="132" height="48" fill="#345f50" stroke="#13251e" stroke-width="2"/>
+                      <g stroke="#11221b" stroke-width="2">
+                        <line x1="22" y1="0" x2="22" y2="48"/>
+                        <line x1="44" y1="0" x2="44" y2="48"/>
+                        <line x1="66" y1="0" x2="66" y2="48"/>
+                        <line x1="88" y1="0" x2="88" y2="48"/>
+                        <line x1="110" y1="0" x2="110" y2="48"/>
+                      </g>
+                      <text x="66" y="32" text-anchor="middle" font-size="24" fill="#ff755a" font-weight="700">КСО</text>
+                    </g>
+                    <g transform="translate(498 474) rotate(-28)">
+                      <rect width="146" height="48" fill="#355f53" stroke="#13251e" stroke-width="2"/>
+                      <g stroke="#11221b" stroke-width="2">
+                        <line x1="22" y1="0" x2="22" y2="48"/>
+                        <line x1="44" y1="0" x2="44" y2="48"/>
+                        <line x1="66" y1="0" x2="66" y2="48"/>
+                        <line x1="88" y1="0" x2="88" y2="48"/>
+                        <line x1="110" y1="0" x2="110" y2="48"/>
+                        <line x1="132" y1="0" x2="132" y2="48"/>
+                      </g>
+                      <text x="73" y="32" text-anchor="middle" font-size="22" fill="#ff755a" font-weight="700">КСО</text>
+                    </g>
+                    <g transform="translate(598 344) rotate(-35)">
+                      <rect width="154" height="42" fill="#d4ac84" stroke="#8d6747" stroke-width="2"/>
+                      <text x="77" y="28" text-anchor="middle" font-size="18" fill="#ff5a3d" font-weight="700">КСО</text>
+                    </g>
+                    <g transform="translate(606 478) rotate(-12)">
+                      <rect width="122" height="34" fill="#3b3c32" stroke="#181a13" stroke-width="2"/>
+                      <g stroke="#12130f" stroke-width="2">
+                        <line x1="18" y1="0" x2="18" y2="34"/>
+                        <line x1="36" y1="0" x2="36" y2="34"/>
+                        <line x1="54" y1="0" x2="54" y2="34"/>
+                        <line x1="72" y1="0" x2="72" y2="34"/>
+                        <line x1="90" y1="0" x2="90" y2="34"/>
+                        <line x1="108" y1="0" x2="108" y2="34"/>
+                      </g>
+                      <text x="61" y="24" text-anchor="middle" font-size="16" fill="#ff613d" font-weight="700">КСО</text>
+                    </g>
+                    <g transform="translate(616 544) rotate(-8)">
+                      <rect width="140" height="36" fill="#3b3c32" stroke="#181a13" stroke-width="2"/>
+                      <g stroke="#12130f" stroke-width="2">
+                        <line x1="20" y1="0" x2="20" y2="36"/>
+                        <line x1="40" y1="0" x2="40" y2="36"/>
+                        <line x1="60" y1="0" x2="60" y2="36"/>
+                        <line x1="80" y1="0" x2="80" y2="36"/>
+                        <line x1="100" y1="0" x2="100" y2="36"/>
+                        <line x1="120" y1="0" x2="120" y2="36"/>
+                      </g>
+                      <text x="70" y="25" text-anchor="middle" font-size="18" fill="#ff6948" font-weight="700">КСО</text>
+                    </g>
+                  </g>
+
+                  <g id="boomCrane" filter="url(#softShadow)">
+                    <rect x="150" y="620" width="68" height="20" rx="4" fill="#ffd354"/>
+                    <rect x="162" y="590" width="26" height="34" rx="4" fill="#ffd354"/>
+                    <rect x="144" y="642" width="86" height="18" rx="4" fill="#ffd354"/>
+                    <rect x="160" y="648" width="46" height="10" rx="4" fill="#e39d27"/>
+                    <rect x="164" y="560" width="10" height="64" fill="#ffd354"/>
+                    <line x1="170" y1="560" x2="240" y2="516" stroke="#ffd354" stroke-width="10" stroke-linecap="round"/>
+                    <line x1="240" y1="516" x2="240" y2="558" stroke="#ffd354" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="240" y1="558" x2="260" y2="584" stroke="#ff7859" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="160" cy="664" r="8" fill="#16171a"/>
+                    <circle cx="206" cy="664" r="8" fill="#16171a"/>
+                  </g>
+
+                  <g id="excavator" filter="url(#softShadow)">
+                    <rect x="278" y="590" width="74" height="46" rx="8" fill="#c7511d"/>
+                    <rect x="290" y="596" width="20" height="32" rx="4" fill="#e56b26"/>
+                    <rect x="314" y="596" width="28" height="32" rx="4" fill="#d86422"/>
+                  </g>
+
+                  <g id="rescueLine" filter="url(#softShadow)">
+                    <line x1="710" y1="470" x2="882" y2="446" stroke="#1b2532" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="710" y1="470" x2="882" y2="446" stroke="#ff6c61" stroke-width="4" stroke-linecap="round"/>
+                    <rect x="736" y="450" width="34" height="18" rx="4" fill="#ff6860"/>
+                    <circle cx="882" cy="446" r="6" fill="#2e76df"/>
+                  </g>
+
+                  <g id="hazardGroup">
+                    <circle id="hazardPulse" cx="728" cy="602" r="54" fill="#ff5963" opacity="0.24" filter="url(#glowRed)"/>
+                    <g transform="translate(646 532)" filter="url(#softShadow)">
+                      <path d="M82 0 L164 136 Q174 154 158 154 L6 154 Q-10 154 0 136 Z" fill="#ff5d5f" opacity="0.92"/>
+                      <path d="M82 18 L144 126 H20 Z" fill="#ff6568"/>
+                      <rect x="72" y="66" width="20" height="48" rx="10" fill="#fff7f3"/>
+                    </g>
+                    <text x="780" y="635" fill="#f6f7fb" font-size="32" font-weight="500">Место схода ПС</text>
+                  </g>
+
+                  <g id="davsBase" filter="url(#softShadow)">
+                    <rect x="1134" y="560" width="222" height="148" rx="30" fill="#bb7930"/>
+                    <rect x="1170" y="582" width="150" height="108" rx="22" fill="#dd8d2d"/>
+                    <text x="1244" y="752" text-anchor="middle" fill="#f7f7fb" font-size="34">База ДАВС</text>
+                  </g>
+
+                  <g id="auxContainers" filter="url(#softShadow)">
+                    <rect x="1110" y="436" width="152" height="58" fill="#93918d" stroke="#c8c8c8" stroke-width="2"/>
+                    <rect x="1270" y="436" width="152" height="58" fill="#93918d" stroke="#c8c8c8" stroke-width="2"/>
+                    <text x="1186" y="472" text-anchor="middle" fill="#d45d12" font-size="30" font-weight="700">КСО</text>
+                    <text x="1346" y="472" text-anchor="middle" fill="#d45d12" font-size="30" font-weight="700">КСО</text>
+                  </g>
+
+                  <g id="resourceLabels" opacity="0.0">
+                    <rect x="102" y="690" width="180" height="42" rx="16" fill="rgba(9,14,22,0.72)" stroke="rgba(255,255,255,0.08)"/>
+                    <text x="192" y="718" text-anchor="middle" fill="#f4f7ff" font-size="20">ЕДК-1000 / кран</text>
+                    <rect x="1092" y="720" width="220" height="42" rx="16" fill="rgba(9,14,22,0.72)" stroke="rgba(255,255,255,0.08)"/>
+                    <text x="1202" y="748" text-anchor="middle" fill="#f4f7ff" font-size="20">Резерв ДАВС и силы</text>
+                  </g>
+                </svg>
+
+                <div class="map-overlay"></div>
               </div>
-              <div class="legend-item">
-                <span class="legend-dot" style="background:#ebba2d;"></span>
-                Восстановительная техника
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot" style="background:#d04c3a;"></span>
-                Пожарный поезд
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot" style="background:#5b6979;"></span>
-                Сошедший подвижной состав
+
+              <div class="map-legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#ff626c;"></span>Место схода и критическая зона</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ffbf47;"></span>Восстановительная техника</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#355f53;"></span>Сошедший подвижной состав</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#bb7930;"></span>База ДАВС и резерв</div>
               </div>
             </div>
           </div>
 
-          <div class="hero-grid">
+          <div class="situation-side-column">
             <div class="panel">
               <div class="panel-header">
                 <div>
-                  <h2 class="panel-title">Ситуация на перегоне</h2>
-                  <p class="panel-subtitle">КрасЖД • цифровой план по АВР • роли и сокращения взяты из ТЗ по разработке цифрового плана и документов по оперативному штабу.</p>
+                  <h2 class="panel-title">Ситуация на участке</h2>
+                  <p class="panel-subtitle">Интерфейс собран как прикладной экран: тёмная тема, полупрозрачные блоки, векторные тени, динамическая схема и реестр сил/средств.</p>
                 </div>
-                <div class="chip">ETA: <span id="etaTop">3 ч 06 мин</span></div>
+                <div class="chip">ETA: <span id="etaSide">2 ч 34 мин</span></div>
               </div>
 
-              <div class="summary-grid">
-                <div class="summary-card">
+              <div class="stats-grid">
+                <div class="stat-card">
                   <span>Подразделения</span>
                   <strong id="participantCount">8</strong>
                 </div>
-                <div class="summary-card">
+                <div class="stat-card">
                   <span>Техника</span>
                   <strong id="equipmentCount">5</strong>
                 </div>
-                <div class="summary-card">
+                <div class="stat-card">
                   <span>Задержки</span>
                   <strong id="delayCount">2</strong>
                 </div>
               </div>
 
               <div style="margin-top:14px;">
-                <button class="primary-btn" id="generatePlanBtn">Сгенерировать план ликвидации</button>
+                <button class="primary-btn" id="generatePlanBtn" type="button">Сгенерировать план ликвидации</button>
               </div>
 
-              <p class="hint" style="margin:12px 0 0;">
-                При генерации используются реальные сущности из документов: оперативный штаб, НВП, ПЧ, ШЧ, ЭЧ, НС, ВЧДЭ, пожарный поезд, сетевой график и силы/средства.
-              </p>
+              <p class="hint" style="margin:12px 0 0;">Добавил более живой функционал: режимы схемы, анимацию критической зоны, симуляцию сценария и масштабирование диаграммы Ганта.</p>
             </div>
 
             <div class="panel">
               <div class="panel-header">
                 <div>
                   <h2 class="panel-title">Исходные данные</h2>
-                  <p class="panel-subtitle">Что требует порядок формирования сетевого графика</p>
+                  <p class="panel-subtitle">Подход следует документам по оперативному штабу, сетевому графику АВР, ТЗ цифрового плана КрасЖД.</p>
                 </div>
-                <div class="chip ok">Реалистичный набор</div>
               </div>
 
               <div class="insight-grid">
                 <div class="insight-card">
-                  <span>Схема происшествия</span>
-                  <strong>2 вагона</strong>
+                  <span>Сценарий</span>
+                  <strong>Сход 2 вагонов</strong>
                 </div>
                 <div class="insight-card">
                   <span>Инфраструктура</span>
-                  <strong>Путь, ШЧ, ЭЧ</strong>
+                  <strong>Путь + ШЧ + ЭЧ</strong>
                 </div>
                 <div class="insight-card">
-                  <span>Силы и средства</span>
-                  <strong>ВП, ЕДК, пожарный поезд</strong>
+                  <span>Критический путь</span>
+                  <strong>Подъём ПС → ПЧ</strong>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="panel">
-            <div class="panel-header">
-              <div>
-                <h2 class="panel-title">Предпросмотр плана</h2>
-                <p class="panel-subtitle">Операции на основе порядка сетевого графика и ТЗ цифрового плана</p>
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">Предпросмотр плана</h2>
+                  <p class="panel-subtitle">Ключевые операции и подразделения</p>
+                </div>
+                <div class="chip" id="planState">Черновик</div>
               </div>
-              <div class="chip" id="planState">Черновик</div>
+              <div class="preview-list" id="tasksPreview"></div>
             </div>
-            <div class="tasks-preview" id="tasksPreview"></div>
           </div>
         </div>
       </section>
 
       <section class="screen" id="screen-plan">
-        <div class="stack">
-          <div class="panel">
-            <div class="panel-header">
-              <div>
-                <h2 class="panel-title">План работ</h2>
-                <p class="panel-subtitle">Диаграмма Ганта по аварийно-восстановительным работам с укрупнёнными этапами и подразделениями.</p>
+        <div class="plan-layout">
+          <div class="stack">
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">Параметры плана</h2>
+                  <p class="panel-subtitle">Управление оптимизацией и детализацией диаграммы.</p>
+                </div>
+                <div class="chip" id="planEta">2 ч 34 мин</div>
               </div>
-              <div class="chip" id="planEta">3 ч 06 мин</div>
+
+              <div class="kpis">
+                <div class="kpi">
+                  <span>Задачи</span>
+                  <strong id="taskCount">10</strong>
+                </div>
+                <div class="kpi">
+                  <span>Прогресс</span>
+                  <strong id="avgProgress">43%</strong>
+                </div>
+                <div class="kpi">
+                  <span>Режим</span>
+                  <strong id="planMode">Базовый</strong>
+                </div>
+              </div>
+
+              <div style="margin-top:14px;">
+                <button class="secondary-btn" id="optimizePlanBtn" type="button">Оптимизировать план</button>
+              </div>
             </div>
 
-            <div class="kpis">
-              <div class="kpi">
-                <span>Задачи</span>
-                <strong id="taskCount">10</strong>
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">Сводка отклонений</h2>
+                  <p class="panel-subtitle">Отклонения в критическом пути и зависимых подразделениях.</p>
+                </div>
               </div>
-              <div class="kpi">
-                <span>Средний прогресс</span>
-                <strong id="avgProgress">31%</strong>
+              <div class="delay-banner" id="delayBanner">
+                <div>
+                  <strong id="delayTitle">Есть отклонения от графика</strong>
+                  <div class="panel-subtitle" id="delayText" style="color:#ffd8dc; margin-top:4px;">ЭЧ и ШЧ смещаются из-за неполного освобождения зоны подъёма.</div>
+                </div>
+                <div class="chip alert" id="delayStatus">2 задержки</div>
               </div>
-              <div class="kpi">
-                <span>Режим</span>
-                <strong id="planMode">Базовый</strong>
-              </div>
-            </div>
-
-            <div style="margin-top:14px;">
-              <button class="secondary-btn" id="optimizePlanBtn">Оптимизировать план</button>
             </div>
           </div>
 
@@ -1240,38 +1595,39 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Диаграмма Ганта</h2>
-                <p class="panel-subtitle">Увеличенная шкала времени: блоки специально сделаны шире, чтобы внутри читались название, исполнитель и окно выполнения.</p>
+                <p class="panel-subtitle">Масштаб можно менять. У задач увеличена минимальная ширина, перенос строк включён, поэтому текст внутри блоков читается и на ПК, и на мобильном.</p>
               </div>
             </div>
 
             <div class="gantt-shell">
               <div class="gantt-toolbar">
-                <span>Шаг сетки: 10 минут</span>
-                <span id="timelineHint">Текущая отметка: 13:05</span>
+                <div class="toolbar-row">
+                  <button class="zoom-btn" type="button" id="zoomOutBtn">−</button>
+                  <div class="zoom-label" id="zoomLabel">Масштаб: 100%</div>
+                  <button class="zoom-btn" type="button" id="zoomInBtn">+</button>
+                  <button class="zoom-btn" type="button" id="fitBtn">Fit</button>
+                </div>
+                <div class="toolbar-row">
+                  <div class="chip">Шаг сетки: 10 минут</div>
+                  <div class="chip" id="timelineHint">Текущее время: 13:18</div>
+                </div>
               </div>
+
               <div class="gantt-wrap">
                 <div class="gantt" id="gantt"></div>
               </div>
             </div>
           </div>
-
-          <div class="delay-banner" id="delayBanner">
-            <div>
-              <strong id="delayTitle">Есть отклонения от графика</strong>
-              <div class="panel-subtitle" id="delayText" style="color:#ffd4d8; margin-top:4px;">ЭЧ и ШЧ заходят в работу позже из-за неполного освобождения зоны подъёма.</div>
-            </div>
-            <div class="chip alert" id="delayStatus">2 задержки</div>
-          </div>
         </div>
       </section>
 
       <section class="screen" id="screen-hq">
-        <div class="stack hq-grid">
+        <div class="hq-layout">
           <div class="panel">
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Оперативный штаб</h2>
-                <p class="panel-subtitle">Состав ролей опирается на распоряжение об оперативном штабе и ТЗ цифрового плана КрасЖД.</p>
+                <p class="panel-subtitle">Состав ролей опирается на документы по штабу, ДАВС и цифровому плану.</p>
               </div>
               <div class="chip" id="hqSummary">8 участников</div>
             </div>
@@ -1282,9 +1638,9 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Чат штаба</h2>
-                <p class="panel-subtitle">Локальная переписка по подразделениям без backend</p>
+                <p class="panel-subtitle">Локальная переписка без backend. Сообщения хранятся в массиве и обновляются мгновенно.</p>
               </div>
-              <div class="chip ok">Канал связи НС</div>
+              <div class="chip ok">Канал НС</div>
             </div>
             <div class="chat-list" id="chatList"></div>
             <form class="chat-form" id="chatForm">
@@ -1297,26 +1653,26 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Статусы задач</h2>
-                <p class="panel-subtitle">Прогресс, отклонения и ответственные подразделения</p>
+                <p class="panel-subtitle">Исполнители, отклонения и фактический прогресс.</p>
               </div>
               <div class="chip alert" id="taskDelayCount">2 задержки</div>
             </div>
-            <div class="task-status-list" id="taskStatusList"></div>
+            <div class="status-list" id="taskStatusList"></div>
           </div>
         </div>
       </section>
     </main>
 
     <nav class="bottom-nav">
-      <button class="nav-btn active" data-screen="situation">
+      <button class="nav-btn active" type="button" data-screen="situation">
         <span class="nav-icon">🗺️</span>
         <span>Ситуация</span>
       </button>
-      <button class="nav-btn" data-screen="plan">
+      <button class="nav-btn" type="button" data-screen="plan">
         <span class="nav-icon">📊</span>
         <span>План</span>
       </button>
-      <button class="nav-btn" data-screen="hq">
+      <button class="nav-btn" type="button" data-screen="hq">
         <span class="nav-icon">🧭</span>
         <span>Штаб</span>
       </button>
@@ -1325,93 +1681,73 @@
 
   <script>
     const palette = {
-      blue: {
-        bg: "linear-gradient(180deg, rgba(43, 156, 255, 0.96), rgba(15, 101, 216, 0.95))",
-        accent: "#b9e4ff"
-      },
-      green: {
-        bg: "linear-gradient(180deg, rgba(69, 212, 111, 0.94), rgba(37, 137, 64, 0.96))",
-        accent: "#d6ffe0"
-      },
-      amber: {
-        bg: "linear-gradient(180deg, rgba(255, 191, 71, 0.95), rgba(201, 125, 29, 0.96))",
-        accent: "#fff1c8"
-      },
-      orange: {
-        bg: "linear-gradient(180deg, rgba(255, 143, 63, 0.94), rgba(204, 92, 27, 0.96))",
-        accent: "#ffd9bf"
-      },
-      slate: {
-        bg: "linear-gradient(180deg, rgba(118, 129, 149, 0.94), rgba(68, 76, 92, 0.96))",
-        accent: "#f0f5ff"
-      }
+      blue: { bg: "linear-gradient(180deg, rgba(47, 159, 255, 0.96), rgba(12, 99, 216, 0.95))", accent: "#caebff" },
+      green: { bg: "linear-gradient(180deg, rgba(75, 217, 113, 0.95), rgba(39, 146, 68, 0.96))", accent: "#ddffe5" },
+      amber: { bg: "linear-gradient(180deg, rgba(255, 191, 71, 0.95), rgba(203, 124, 28, 0.96))", accent: "#fff0c8" },
+      orange: { bg: "linear-gradient(180deg, rgba(255, 147, 68, 0.95), rgba(205, 96, 29, 0.96))", accent: "#ffdcbf" },
+      slate: { bg: "linear-gradient(180deg, rgba(131, 144, 166, 0.95), rgba(74, 84, 100, 0.96))", accent: "#f2f6ff" }
     };
 
-    const scenario = {
-      incident: "Сход 2 вагонов на перегоне",
-      location: "КрасЖД • 4634 км • перегон с контактной сетью",
-      docs: [
-        "Распоряжение об оперативном штабе 2417р",
-        "Инструктивные указания по АВР 2182/р",
-        "Порядок сетевого графика КрасЖД",
-        "ТЗ цифрового плана КрасЖД 2022"
-      ]
-    };
+    const clone = (value) => JSON.parse(JSON.stringify(value));
 
     const baseTasks = [
-      { id: 1, title: "Оповещение и сбор оперативного штаба", owner: "Руководитель штаба", team: "Штаб", start: 0, duration: 12, progress: 100, color: "slate", status: "Завершено", delay: 0 },
-      { id: 2, title: "Схема происшествия и исходные данные", owner: "НВП", team: "ДАВС", start: 0, duration: 18, progress: 92, color: "blue", status: "Подтверждено", delay: 0 },
-      { id: 3, title: "Отправление восстановительного поезда", owner: "НВП", team: "ВП", start: 8, duration: 32, progress: 80, color: "amber", status: "На маршруте", delay: 0 },
-      { id: 4, title: "Ограждение места и пожарное прикрытие", owner: "Пожарный поезд", team: "ФГП ВО ЖДТ", start: 10, duration: 24, progress: 72, color: "orange", status: "Выполняется", delay: 0 },
-      { id: 5, title: "Подготовка ЕДК-1000 и строповка", owner: "ВЧДЭ / крановая группа", team: "ВП", start: 36, duration: 30, progress: 48, color: "amber", status: "Развёртывание", delay: 0 },
-      { id: 6, title: "Подъём и уборка сошедшего подвижного состава", owner: "НВП", team: "ВП + ВЧДЭ", start: 64, duration: 58, progress: 34, color: "green", status: "Основная операция", delay: 0 },
-      { id: 7, title: "Восстановление пути", owner: "ПЧ", team: "Дистанция пути", start: 110, duration: 42, progress: 18, color: "blue", status: "Ожидает освобождение", delay: 12 },
-      { id: 8, title: "Проверка СЦБ и связи", owner: "ШЧ / НС", team: "ШЧ + НС", start: 136, duration: 28, progress: 10, color: "slate", status: "Подготовка", delay: 8 },
-      { id: 9, title: "Восстановление контактной сети", owner: "ЭЧ", team: "Электроснабжение", start: 146, duration: 24, progress: 0, color: "orange", status: "Ожидание окна", delay: 6 },
-      { id: 10, title: "Контрольный пропуск и открытие движения", owner: "Штаб / ПЧ", team: "Штаб + ПЧ", start: 172, duration: 14, progress: 0, color: "green", status: "Ожидает", delay: 0 }
+      { id: 1, title: "Сбор оперативного штаба и подтверждение границ АВР", owner: "Руководитель штаба", team: "Штаб", start: 0, duration: 10, progress: 100, color: "slate", status: "Завершено", delay: 0 },
+      { id: 2, title: "Схема происшествия и исходные данные по месту схода", owner: "НВП", team: "ДАВС", start: 0, duration: 16, progress: 100, color: "blue", status: "Подтверждено", delay: 0 },
+      { id: 3, title: "Отправление восстановительного поезда и подход техники", owner: "НВП", team: "ВП", start: 8, duration: 24, progress: 90, color: "amber", status: "На месте", delay: 0 },
+      { id: 4, title: "Ограждение места и пожарное прикрытие", owner: "ФГП ВО ЖДТ", team: "Пожарный поезд", start: 10, duration: 22, progress: 88, color: "orange", status: "Выполняется", delay: 0 },
+      { id: 5, title: "Подготовка ЕДК-1000, строповка и расстановка персонала", owner: "ВЧДЭ / крановая группа", team: "ВП", start: 28, duration: 30, progress: 70, color: "amber", status: "Развёртывание", delay: 0 },
+      { id: 6, title: "Подъём и уборка сошедшего подвижного состава", owner: "НВП", team: "ВП + ВЧДЭ", start: 56, duration: 48, progress: 46, color: "green", status: "Критическая операция", delay: 0 },
+      { id: 7, title: "Восстановление пути и выправка верхнего строения", owner: "ПЧ", team: "Дистанция пути", start: 100, duration: 28, progress: 24, color: "blue", status: "Ожидание окна", delay: 12 },
+      { id: 8, title: "Проверка устройств СЦБ и канала связи", owner: "ШЧ / НС", team: "ШЧ + НС", start: 118, duration: 24, progress: 16, color: "slate", status: "Подготовка", delay: 8 },
+      { id: 9, title: "Восстановление контактной сети", owner: "ЭЧ", team: "Электроснабжение", start: 130, duration: 18, progress: 0, color: "orange", status: "Ожидание", delay: 6 },
+      { id: 10, title: "Контрольный пропуск и открытие движения", owner: "Штаб / ПЧ", team: "Штаб + ПЧ", start: 150, duration: 14, progress: 0, color: "green", status: "Ожидает", delay: 0 }
     ];
 
     const optimizedTasks = [
-      { id: 1, title: "Оповещение и сбор оперативного штаба", owner: "Руководитель штаба", team: "Штаб", start: 0, duration: 10, progress: 100, color: "slate", status: "Завершено", delay: 0 },
-      { id: 2, title: "Схема происшествия и исходные данные", owner: "НВП", team: "ДАВС", start: 0, duration: 14, progress: 100, color: "blue", status: "Подтверждено", delay: 0 },
-      { id: 3, title: "Отправление восстановительного поезда", owner: "НВП", team: "ВП", start: 6, duration: 26, progress: 92, color: "amber", status: "На месте", delay: 0 },
-      { id: 4, title: "Ограждение места и пожарное прикрытие", owner: "Пожарный поезд", team: "ФГП ВО ЖДТ", start: 8, duration: 20, progress: 88, color: "orange", status: "Закрыто", delay: 0 },
-      { id: 5, title: "Подготовка ЕДК-1000 и строповка", owner: "ВЧДЭ / крановая группа", team: "ВП", start: 28, duration: 24, progress: 70, color: "amber", status: "Ускорено", delay: 0 },
-      { id: 6, title: "Подъём и уборка сошедшего подвижного состава", owner: "НВП", team: "ВП + ВЧДЭ", start: 50, duration: 46, progress: 54, color: "green", status: "Ускоренное окно", delay: 0 },
-      { id: 7, title: "Восстановление пути", owner: "ПЧ", team: "Дистанция пути", start: 88, duration: 34, progress: 36, color: "blue", status: "Старт раньше", delay: 4 },
-      { id: 8, title: "Проверка СЦБ и связи", owner: "ШЧ / НС", team: "ШЧ + НС", start: 112, duration: 22, progress: 28, color: "slate", status: "Параллельно", delay: 2 },
-      { id: 9, title: "Восстановление контактной сети", owner: "ЭЧ", team: "Электроснабжение", start: 118, duration: 20, progress: 20, color: "orange", status: "Параллельно", delay: 0 },
-      { id: 10, title: "Контрольный пропуск и открытие движения", owner: "Штаб / ПЧ", team: "Штаб + ПЧ", start: 140, duration: 12, progress: 0, color: "green", status: "Готовится", delay: 0 }
+      { id: 1, title: "Сбор оперативного штаба и подтверждение границ АВР", owner: "Руководитель штаба", team: "Штаб", start: 0, duration: 8, progress: 100, color: "slate", status: "Завершено", delay: 0 },
+      { id: 2, title: "Схема происшествия и исходные данные по месту схода", owner: "НВП", team: "ДАВС", start: 0, duration: 12, progress: 100, color: "blue", status: "Подтверждено", delay: 0 },
+      { id: 3, title: "Отправление восстановительного поезда и подход техники", owner: "НВП", team: "ВП", start: 6, duration: 20, progress: 100, color: "amber", status: "На месте", delay: 0 },
+      { id: 4, title: "Ограждение места и пожарное прикрытие", owner: "ФГП ВО ЖДТ", team: "Пожарный поезд", start: 8, duration: 18, progress: 100, color: "orange", status: "Закрыто", delay: 0 },
+      { id: 5, title: "Подготовка ЕДК-1000, строповка и расстановка персонала", owner: "ВЧДЭ / крановая группа", team: "ВП", start: 22, duration: 22, progress: 88, color: "amber", status: "Ускорено", delay: 0 },
+      { id: 6, title: "Подъём и уборка сошедшего подвижного состава", owner: "НВП", team: "ВП + ВЧДЭ", start: 42, duration: 38, progress: 68, color: "green", status: "Параллельное окно", delay: 0 },
+      { id: 7, title: "Восстановление пути и выправка верхнего строения", owner: "ПЧ", team: "Дистанция пути", start: 76, duration: 24, progress: 42, color: "blue", status: "Начато раньше", delay: 2 },
+      { id: 8, title: "Проверка устройств СЦБ и канала связи", owner: "ШЧ / НС", team: "ШЧ + НС", start: 92, duration: 18, progress: 34, color: "slate", status: "Параллельно", delay: 0 },
+      { id: 9, title: "Восстановление контактной сети", owner: "ЭЧ", team: "Электроснабжение", start: 98, duration: 16, progress: 26, color: "orange", status: "Параллельно", delay: 0 },
+      { id: 10, title: "Контрольный пропуск и открытие движения", owner: "Штаб / ПЧ", team: "Штаб + ПЧ", start: 120, duration: 10, progress: 0, color: "green", status: "Подготовка", delay: 0 }
     ];
 
     const people = [
-      { name: "Неустроев", role: "Руководитель штаба", unit: "КрасЖД", status: "Координирует АВР", badge: "в штабе", stateClass: "status-ok", avatar: "blue" },
-      { name: "Раменский", role: "Начальник ДАВС", unit: "ДАВС", status: "Контролирует восстановительный поезд", badge: "онлайн", stateClass: "status-ok", avatar: "green" },
-      { name: "НВП", role: "Начальник восстановительного поезда", unit: "ВП", status: "Ведёт основной подъём", badge: "на месте", stateClass: "status-ok", avatar: "yellow" },
-      { name: "ПЧ", role: "Дистанция пути", unit: "Путь", status: "Готовит звено восстановления пути", badge: "готовность", stateClass: "status-warn", avatar: "green" },
-      { name: "ШЧ", role: "СЦБ", unit: "ШЧ", status: "Ожидает допуск после уборки ПС", badge: "ожидание", stateClass: "status-warn", avatar: "slate" },
+      { name: "Неустроев", role: "Руководитель штаба", unit: "КрасЖД", status: "Координирует оперативные решения", badge: "в штабе", stateClass: "status-ok", avatar: "blue" },
+      { name: "Раменский", role: "Начальник ДАВС", unit: "ДАВС", status: "Контроль сил и средств", badge: "онлайн", stateClass: "status-ok", avatar: "green" },
+      { name: "НВП", role: "Начальник восстановительного поезда", unit: "ВП", status: "Ведёт подъём и уборку ПС", badge: "на месте", stateClass: "status-ok", avatar: "yellow" },
+      { name: "ПЧ", role: "Дистанция пути", unit: "Путь", status: "Подготовка восстановления пути", badge: "готовность", stateClass: "status-warn", avatar: "green" },
+      { name: "ШЧ", role: "СЦБ", unit: "ШЧ", status: "Ожидает допуск после уборки", badge: "окно", stateClass: "status-warn", avatar: "slate" },
       { name: "ЭЧ", role: "Электроснабжение", unit: "ЭЧ", status: "Работа по контактной сети после окна", badge: "+6 мин", stateClass: "status-bad", avatar: "yellow" },
-      { name: "НС", role: "Дирекция связи", unit: "НС", status: "Поддерживает канал штаба и подтверждение связи", badge: "связь", stateClass: "status-ok", avatar: "blue" },
-      { name: "ФГП ВО ЖДТ", role: "Пожарный поезд", unit: "Прикрытие", status: "Ограждение места и пожарная безопасность", badge: "боеготов", stateClass: "status-ok", avatar: "green" }
+      { name: "НС", role: "Дирекция связи", unit: "НС", status: "Поддерживает канал штаба", badge: "связь", stateClass: "status-ok", avatar: "blue" },
+      { name: "ФГП ВО ЖДТ", role: "Пожарный поезд", unit: "Прикрытие", status: "Ограждение и пожарная безопасность", badge: "боеготов", stateClass: "status-ok", avatar: "green" }
     ];
 
     const chatSeed = [
-      { author: "Руководитель штаба", text: "Подтверждаем работу по схеме происшествия. НВП, обновите силы и средства.", time: "12:04", outgoing: false },
-      { author: "НВП", text: "Восстановительный поезд отправлен. По ТЗ и сетевому графику запускаем параллельное ограждение и подготовку ЕДК-1000.", time: "12:08", outgoing: false },
-      { author: "ПЧ", text: "Звено пути подготовлено, ждём освобождение зоны после уборки сошедшего ПС.", time: "12:19", outgoing: false },
-      { author: "ШЧ / НС", text: "Связь со штабом устойчивая, проверку СЦБ начнём сразу после допуска.", time: "12:24", outgoing: false },
-      { author: "Штаб", text: "Принято. Держим оптимизированный сценарий как резервный вариант.", time: "12:28", outgoing: true }
+      { author: "Руководитель штаба", text: "Подтверждаем схему происшествия. НВП, обновите по силам и средствам.", time: "12:04", outgoing: false },
+      { author: "НВП", text: "Восстановительный поезд на подходе. ЕДК-1000 и крановая группа готовят строповку по нормативной схеме.", time: "12:09", outgoing: false },
+      { author: "ПЧ", text: "Звено пути готово, ждём освобождение зоны после подъёма и уборки ПС.", time: "12:17", outgoing: false },
+      { author: "ШЧ / НС", text: "Связь со штабом стабильная, проверку СЦБ начнём сразу после допуска.", time: "12:23", outgoing: false },
+      { author: "Штаб", text: "Принято. На вкладке плана доступен zoom Ганта, держим оптимизированный сценарий как резерв.", time: "12:28", outgoing: true }
     ];
 
-    const cloneData = (value) => JSON.parse(JSON.stringify(value));
-
-    let tasks = cloneData(baseTasks);
-    let messages = cloneData(chatSeed);
+    let tasks = clone(baseTasks);
+    let messages = clone(chatSeed);
     let optimized = false;
     let planGenerated = false;
+    let minuteWidth = 7;
+    let pulseEnabled = true;
+    let resourcesMode = false;
+    let simRunning = false;
+    let simTimer = null;
 
     const screens = [...document.querySelectorAll(".screen")];
     const navButtons = [...document.querySelectorAll(".nav-btn")];
+    const layerButtons = [...document.querySelectorAll("[data-layer]")];
     const tasksPreview = document.getElementById("tasksPreview");
     const gantt = document.getElementById("gantt");
     const peopleList = document.getElementById("peopleList");
@@ -1419,24 +1755,50 @@
     const taskStatusList = document.getElementById("taskStatusList");
     const chatForm = document.getElementById("chatForm");
     const chatInput = document.getElementById("chatInput");
+    const resourceLabels = document.getElementById("resourceLabels");
+    const trainLeft = document.getElementById("trainLeft");
+    const trainRight = document.getElementById("trainRight");
+    const containers = document.getElementById("containers");
+    const hazardPulse = document.getElementById("hazardPulse");
+    const mapSummary = document.getElementById("mapSummary");
+    const criticalSummary = document.getElementById("criticalSummary");
+
+    document.documentElement.style.setProperty("--minute-width", `${minuteWidth}px`);
 
     navButtons.forEach((button) => {
       button.addEventListener("click", () => setScreen(button.dataset.screen));
     });
 
+    layerButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        layerButtons.forEach((btn) => btn.classList.toggle("active", btn === button));
+        resourcesMode = button.dataset.layer === "resources";
+        updateMapMode();
+      });
+    });
+
     document.getElementById("generatePlanBtn").addEventListener("click", () => {
       planGenerated = true;
       optimized = false;
-      tasks = cloneData(baseTasks);
+      tasks = clone(baseTasks);
       updateAll();
       setScreen("plan");
     });
 
     document.getElementById("optimizePlanBtn").addEventListener("click", () => {
       optimized = !optimized;
-      tasks = cloneData(optimized ? optimizedTasks : baseTasks);
+      tasks = clone(optimized ? optimizedTasks : baseTasks);
       updateAll();
     });
+
+    document.getElementById("zoomInBtn").addEventListener("click", () => setZoom(minuteWidth + 1.5));
+    document.getElementById("zoomOutBtn").addEventListener("click", () => setZoom(minuteWidth - 1.5));
+    document.getElementById("fitBtn").addEventListener("click", fitZoom);
+    document.getElementById("pulseToggle").addEventListener("click", () => {
+      pulseEnabled = !pulseEnabled;
+      updatePulse();
+    });
+    document.getElementById("simulateBtn").addEventListener("click", toggleSimulation);
 
     chatForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -1445,28 +1807,82 @@
       const now = new Date();
       const hh = String(now.getHours()).padStart(2, "0");
       const mm = String(now.getMinutes()).padStart(2, "0");
-      messages.push({
-        author: "Штаб",
-        text: value,
-        time: `${hh}:${mm}`,
-        outgoing: true
-      });
+      messages.push({ author: "Штаб", text: value, time: `${hh}:${mm}`, outgoing: true });
       chatInput.value = "";
       renderChat();
     });
 
     function setScreen(name) {
-      screens.forEach((screen) => {
-        screen.classList.toggle("active", screen.id === `screen-${name}`);
-      });
-      navButtons.forEach((button) => {
-        button.classList.toggle("active", button.dataset.screen === name);
-      });
+      screens.forEach((screen) => screen.classList.toggle("active", screen.id === `screen-${name}`));
+      navButtons.forEach((button) => button.classList.toggle("active", button.dataset.screen === name));
+    }
+
+    function setZoom(value) {
+      minuteWidth = Math.max(5.5, Math.min(12, value));
+      document.documentElement.style.setProperty("--minute-width", `${minuteWidth}px`);
+      renderGantt();
+      updateZoomLabel();
+    }
+
+    function fitZoom() {
+      const wrap = document.querySelector(".gantt-wrap");
+      if (!wrap) return;
+      const total = Math.max(170, totalDuration() + 20);
+      const desired = Math.max(5.5, Math.min(12, (wrap.clientWidth - 260) / total));
+      setZoom(desired);
+    }
+
+    function updateZoomLabel() {
+      const percent = Math.round((minuteWidth / 7) * 100);
+      document.getElementById("zoomLabel").textContent = `Масштаб: ${percent}%`;
+    }
+
+    function toggleSimulation() {
+      simRunning = !simRunning;
+      document.getElementById("simulateBtn").textContent = simRunning ? "⏸" : "▶";
+
+      if (!simRunning) {
+        clearInterval(simTimer);
+        simTimer = null;
+        trainLeft.style.transform = "";
+        trainRight.style.transform = "";
+        containers.style.transform = "";
+        return;
+      }
+
+      let step = 0;
+      simTimer = setInterval(() => {
+        step += 1;
+        const swing = Math.sin(step / 4) * 6;
+        trainLeft.style.transform = `translateX(${Math.max(0, 20 - step)}px)`;
+        trainRight.style.transform = `translateX(${Math.min(0, -20 + step)}px)`;
+        containers.style.transform = `translateY(${Math.sin(step / 3) * 2}px) rotate(${swing * 0.2}deg)`;
+        if (step > 20) {
+          clearInterval(simTimer);
+          simTimer = null;
+          simRunning = false;
+          document.getElementById("simulateBtn").textContent = "▶";
+        }
+      }, 140);
+    }
+
+    function updatePulse() {
+      hazardPulse.style.display = pulseEnabled ? "block" : "none";
+    }
+
+    function updateMapMode() {
+      resourceLabels.style.opacity = resourcesMode ? "1" : "0";
+      mapSummary.textContent = resourcesMode
+        ? "Показаны силы и средства: кран, резерв ДАВС, пожарный поезд и опорные объекты для развёртывания АВР."
+        : "Схема аварии в виде сверху: пути, сход ПС, техника, критическая зона и база ДАВС в одном поле.";
+      criticalSummary.textContent = resourcesMode
+        ? "Основной резерв сосредоточен на базе ДАВС. После подъёма ПС критический путь переходит на ПЧ, ШЧ и ЭЧ."
+        : "Подъём и уборка ПС остаются главной критической операцией. После завершения открываются параллельные окна для ПЧ, ШЧ и ЭЧ.";
     }
 
     function minutesToLabel(minutes) {
-      const startMinutes = 12 * 60;
-      const total = startMinutes + minutes;
+      const base = 12 * 60;
+      const total = base + minutes;
       const hh = String(Math.floor(total / 60)).padStart(2, "0");
       const mm = String(total % 60).padStart(2, "0");
       return `${hh}:${mm}`;
@@ -1491,13 +1907,12 @@
       return tasks.filter((task) => task.delay > 0);
     }
 
-    function renderTaskPreview() {
-      const previewTasks = tasks.slice(0, 5);
-      tasksPreview.innerHTML = previewTasks.map((task) => {
+    function renderPreview() {
+      tasksPreview.innerHTML = tasks.slice(0, 5).map((task) => {
         const colors = palette[task.color];
         return `
-          <div class="task-preview-card">
-            <div class="task-preview-head">
+          <div class="preview-task">
+            <div class="preview-task-head">
               <div>
                 <strong>${task.title}</strong>
                 <span>${task.owner} • ${minutesToLabel(task.start)}–${minutesToLabel(task.start + task.duration)}</span>
@@ -1513,28 +1928,19 @@
     }
 
     function renderGantt() {
-      const totalMinutes = Math.max(210, totalDuration() + 20);
-      gantt.style.setProperty("--timeline-total", totalMinutes);
+      const total = Math.max(170, totalDuration() + 20);
+      gantt.style.setProperty("--timeline-total", total);
 
-      const tickStep = 20;
       const ticks = [];
-      for (let value = 0; value <= totalMinutes; value += tickStep) {
-        ticks.push(value);
-      }
-
-      const tickMarkup = ticks.map((value) => {
-        const left = `calc(var(--minute-width) * ${value})`;
-        return `<span class="time-tick" style="left:${left};">${minutesToLabel(value)}</span>`;
-      }).join("");
-
-      const currentLineLeft = Math.min(totalMinutes, optimized ? 96 : 122);
-      const currentLine = `<div class="current-line" style="left:calc(var(--minute-width) * ${currentLineLeft});"></div>`;
+      for (let i = 0; i <= total; i += 20) ticks.push(i);
+      const currentMinute = optimized ? 94 : 118;
+      const lineMarkup = `<div class="current-line" style="left:calc(var(--minute-width) * ${currentMinute});"></div>`;
+      const tickMarkup = ticks.map((value) => `<span class="time-tick" style="left:calc(var(--minute-width) * ${value});">${minutesToLabel(value)}</span>`).join("");
 
       const rows = tasks.map((task) => {
         const colors = palette[task.color];
-        const width = `calc(var(--minute-width) * ${task.duration})`;
-        const left = `calc(var(--minute-width) * ${task.start})`;
-        const delayBadge = task.delay ? `<div class="task-delay-badge">+${task.delay} мин</div>` : "";
+        const visualWidth = Math.max(task.duration * minuteWidth, 260);
+        const left = task.start * minuteWidth;
         return `
           <div class="gantt-row">
             <div class="gantt-label">
@@ -1542,14 +1948,13 @@
               <span>${task.owner}<br>${task.team}</span>
             </div>
             <div class="timeline-row">
-              ${currentLine}
-              <div class="task-bar" style="left:${left}; width:${width}; background:${colors.bg};">
-                ${delayBadge}
-                <div class="task-bar-head">
-                  <div>
-                    <strong>${task.title}</strong>
-                    <span>${task.owner} • ${minutesToLabel(task.start)}–${minutesToLabel(task.start + task.duration)}</span>
-                  </div>
+              ${lineMarkup}
+              <div class="task-bar" style="left:${left}px; width:${visualWidth}px; background:${colors.bg};">
+                ${task.delay ? `<div class="task-delay-badge">+${task.delay} мин</div>` : ""}
+                <div class="task-bar-content">
+                  <div class="task-bar-title">${task.title}</div>
+                  <div class="task-bar-meta">${task.owner} • ${task.team}</div>
+                  <div class="task-bar-window">${minutesToLabel(task.start)}–${minutesToLabel(task.start + task.duration)} • ${task.status}</div>
                 </div>
                 <div class="task-progress" style="width:${task.progress}%; background:${colors.accent};"></div>
               </div>
@@ -1565,14 +1970,14 @@
             <span>Ответственный / подразделение</span>
           </div>
           <div class="timeline">
-            ${currentLine}
+            ${lineMarkup}
             ${tickMarkup}
           </div>
         </div>
         ${rows}
       `;
 
-      document.getElementById("timelineHint").textContent = `Текущая отметка: ${minutesToLabel(currentLineLeft)}`;
+      document.getElementById("timelineHint").textContent = `Текущее время: ${minutesToLabel(currentMinute)}`;
     }
 
     function renderPeople() {
@@ -1612,9 +2017,9 @@
       `).join("");
     }
 
-    function renderTaskStatuses() {
+    function renderStatuses() {
       taskStatusList.innerHTML = tasks.map((task) => {
-        const stateClass = task.delay ? "status-bad" : task.progress >= 60 ? "status-ok" : "status-warn";
+        const stateClass = task.delay ? "status-bad" : task.progress >= 70 ? "status-ok" : "status-warn";
         const issue = task.delay ? `Отклонение +${task.delay} мин` : "Без отклонений";
         return `
           <div class="status-card">
@@ -1639,40 +2044,51 @@
       document.getElementById("participantCount").textContent = String(people.length);
       document.getElementById("equipmentCount").textContent = "5";
       document.getElementById("delayCount").textContent = String(delays.length);
-      document.getElementById("planState").textContent = planGenerated ? "План сформирован" : "Черновик";
+      document.getElementById("forcesValue").textContent = String(people.length);
+      document.getElementById("equipmentValue").textContent = "5";
       document.getElementById("taskCount").textContent = String(tasks.length);
       document.getElementById("avgProgress").textContent = `${avgProgress()}%`;
       document.getElementById("planMode").textContent = optimized ? "Оптимизирован" : "Базовый";
       document.getElementById("planEta").textContent = totalLabel();
       document.getElementById("etaTop").textContent = totalLabel();
+      document.getElementById("etaSide").textContent = totalLabel();
       document.getElementById("hqSummary").textContent = `${people.length} участников`;
+      document.getElementById("planState").textContent = planGenerated ? "План сформирован" : "Черновик";
       document.getElementById("taskDelayCount").textContent = `${delays.length} ${delays.length === 1 ? "задержка" : delays.length < 5 ? "задержки" : "задержек"}`;
       document.getElementById("delayStatus").textContent = `${delays.length} ${delays.length === 1 ? "задержка" : delays.length < 5 ? "задержки" : "задержек"}`;
 
+      const progress = Math.max(24, Math.min(92, avgProgress()));
+      document.getElementById("mapProgressFill").style.width = `${progress}%`;
+
       if (delays.length) {
-        const leadDelay = delays[0];
-        document.getElementById("delayTitle").textContent = `Есть отклонения по подразделениям ${delays.map((item) => item.owner).join(", ")}`;
-        document.getElementById("delayText").textContent = `${leadDelay.owner} начинает этап "${leadDelay.title}" с задержкой +${leadDelay.delay} мин. Оптимизация уменьшает критический путь и запускает часть проверок параллельно.`;
-        document.getElementById("delayBanner").style.display = "flex";
+        const lead = delays[0];
+        document.getElementById("delayTitle").textContent = `Есть отклонения по подразделениям ${delays.map((t) => t.owner).join(", ")}`;
+        document.getElementById("delayText").textContent = `${lead.owner} начинает этап "${lead.title}" с задержкой +${lead.delay} мин. Оптимизация сокращает критический путь и запускает ПЧ, ШЧ и ЭЧ ближе друг к другу.`;
       } else {
         document.getElementById("delayTitle").textContent = "План без отклонений";
-        document.getElementById("delayText").textContent = "После оптимизации критические операции перекрываются, а задержки сняты.";
-        document.getElementById("delayBanner").style.display = "flex";
+        document.getElementById("delayText").textContent = "Критический путь укорочен, зависимые подразделения запускаются без ожидания дополнительного окна.";
       }
     }
 
     function updateAll() {
       updateStats();
-      renderTaskPreview();
+      renderPreview();
       renderGantt();
       renderPeople();
       renderChat();
-      renderTaskStatuses();
+      renderStatuses();
+      updateMapMode();
+      updatePulse();
+      updateZoomLabel();
     }
 
-    window.addEventListener("resize", renderGantt);
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) fitZoom();
+      else renderGantt();
+    });
 
     updateAll();
+    if (window.innerWidth > 900) fitZoom();
   </script>
 </body>
 </html>
